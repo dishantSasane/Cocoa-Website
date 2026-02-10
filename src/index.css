@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 18 24% 14%;
+    --background-secondary: 18 30% 8%;
+    --foreground: 30 20% 95%;
+    --card: 18 24% 14%;
+    --card-foreground: 30 20% 95%;
+    --popover: 18 24% 14%;
+    --popover-foreground: 30 20% 95%;
+    --primary: 20 55% 52%;
+    --primary-foreground: 30 20% 95%;
+    --secondary: 18 30% 8%;
+    --secondary-foreground: 30 20% 95%;
+    --muted: 18 20% 22%;
+    --muted-foreground: 25 18% 72%;
+    --accent: 20 55% 52%;
+    --accent-foreground: 30 20% 95%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 20% 95% / 0.12;
+    --input: 30 20% 95% / 0.12;
+    --ring: 20 55% 52%;
+    --radius: 1.375rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-label {
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .vignette::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .grain-overlay::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  .glass-card {
+    background: rgba(43, 30, 26, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(246, 242, 238, 0.12);
+    border-radius: 22px;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #C86B3E 0%, #D48963 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A120F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C86B3E;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D48963;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(200, 107, 62, 0.3);
+  color: #F6F2EE;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .reveal, .reveal-left, .reveal-right {
+    transform: none;
+    opacity: 1;
+  }
+}
