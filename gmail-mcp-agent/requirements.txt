@@ -1,0 +1,20 @@
+# MCP and LangGraph
+mcp>=1.0.0
+langgraph>=0.2.0
+langchain-anthropic>=0.1.0
+
+# Google API
+google-api-python-client>=2.100.0
+google-auth-httplib2>=0.2.0
+google-auth-oauthlib>=1.2.0
+
+# Web app
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+bcrypt>=4.1.0
+itsdangerous>=2.1.0
+python-dotenv>=1.0.0
+
+# Utilities
+httpx>=0.26.0
